@@ -16,6 +16,9 @@ app.set("view engine", "pug");
 //4 static files
 app.use(express.static("public"));
 
+// 6 app local variable
+const systemConfig = require("./config/system");
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
 // 2 router
 const router = require("./router/client/index.router");
 const adminRouter = require("./router/admin/index.router");

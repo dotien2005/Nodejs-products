@@ -1,3 +1,4 @@
+// GET /products
 const Product = require("../../models/product.models.js");
 
 module.exports.products = async (req, res) => {

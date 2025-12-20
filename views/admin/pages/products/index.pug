@@ -1,4 +1,5 @@
 extends ../../layouts/default.pug
+include ../../mixins/filter-status.pug
 block main  
   h1 Trang Quản Lý Sản Phẩm
   p Đây là trang quản lý sản phẩm dành cho quản trị viên.
@@ -9,11 +10,7 @@ block main
       .row
 
         .col-6
-          each item in filterStatus
-            button(
-              class=`btn btn-sm ml-1 btn-outline-success ${item.class}`
-              button-status=item.status
-            ) #{item.name}
+          +filter-status(filterStatus)
 
         .col-6
           form(id="form-search")

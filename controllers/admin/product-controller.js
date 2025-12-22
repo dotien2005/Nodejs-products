@@ -25,11 +25,35 @@ module.exports.product = async (req, res) => {
     find.title = objeactSearch.title;
   }
 
-  const products = await Product.find(find);
+  // Pagination : phân trang
+
+  let objeactPagination = {
+    limitItem: 7,
+    currentPage: 1,
+  };
+
+  if (req.query.page) {
+    objeactPagination.currentPage = parseInt(req.query.page);
+  }
+  objeactPagination.skip =
+    (objeactPagination.currentPage - 1) * objeactPagination.limitItem;
+  // console.log(objeactPagination.currentPage);
+
+  // đếm sản phẩm trong db
+  const countProduct = await Product.countDocuments(find);
+  const totalPage = countProduct / objeactPagination.limitItem;
+  objeactPagination.totalPage = Math.ceil(totalPage);
+
+  // end Pagination
+
+  const products = await Product.find(find)
+    .limit(objeactPagination.limitItem)
+    .skip(objeactPagination.skip);
   res.render("admin/pages/products/index.pug", {
     pageTitle: "Product Page",
     product: products,
     filterStatus: filterStatus,
     keywordPUG: objeactSearch.keyword,
+    pagination: objeactPagination,
   });
 };

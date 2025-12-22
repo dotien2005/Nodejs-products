@@ -1,2 +1,6 @@
 thư viện dùng env
  dotenv
+
+mongoose
+ limit  : giới hạn số tìm kiếm
+ 

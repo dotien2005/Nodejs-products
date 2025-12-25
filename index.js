@@ -1,5 +1,7 @@
 const express = require("express");
+const methodOverride = require("method-override");
 const app = express();
+app.use(methodOverride("_method"));
 
 //  3 config dotenv để sử dụng biến môi trường
 require("dotenv").config();

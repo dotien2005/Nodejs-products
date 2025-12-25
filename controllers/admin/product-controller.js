@@ -3,7 +3,8 @@ const Product = require("../../models/product.models");
 const filterStatusHelper = require("../../helpers/filerStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
-
+// controllers/admin/product-controller.jS
+// Get /admin/products
 module.exports.product = async (req, res) => {
   let find = {};
   // console.log(req.query.status);
@@ -50,4 +51,17 @@ module.exports.product = async (req, res) => {
     keywordPUG: objeactSearch.keyword,
     pagination: objeactPagination,
   });
+};
+
+// Controllers Change Status
+// Get /admin/products/change-status/:status/:id
+
+module.exports.changeStatus = async (req, res) => {
+  // tạo id và status
+  const status = req.params.status;
+  const id = req.params.id;
+  // cập nhật id và status
+  await Product.updateOne({ _id: id }, { status, status });
+  // dùng để chuyển hướng về lại links
+  res.redirect("/admin/products");
 };

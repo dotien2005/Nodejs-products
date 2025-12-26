@@ -4,3 +4,8 @@ thư viện dùng env
 mongoose
  limit  : giới hạn số tìm kiếm
  
+thư viện 
+
+--- method-override :đè phương thức
+
+--- body-parser:convert lại data

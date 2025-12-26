@@ -1,3 +1,4 @@
+//  cập nhật status
 console.log("Change Status Product Page");
 const buttonsChangeStatus = document.querySelectorAll("[button-change-status]");
 
@@ -21,3 +22,40 @@ if (buttonsChangeStatus.length > 0) {
     });
   });
 }
+
+// Checkbox multi
+const checkboxMulti = document.querySelector("[checkbox-multi]");
+if (checkboxMulti) {
+  // console.log(checkboxMulti);
+  const inputCheckAll = checkboxMulti.querySelector("input[name='checkall']");
+  // console.log(inputCheckAll);
+  const inputsId = checkboxMulti.querySelectorAll("input[name='id']");
+  // console.log(inputCheckBox);
+  inputCheckAll.addEventListener("click", () => {
+    if (inputCheckAll.checked) {
+      inputsId.forEach((input) => {
+        input.checked = true;
+      });
+    } else {
+      inputsId.forEach((input) => {
+        input.checked = false;
+      });
+    }
+  });
+
+  inputsId.forEach((input) => {
+    input.addEventListener("click", () => {
+      // đếm số lượng tick
+      const countCheck = checkboxMulti.querySelectorAll(
+        "input[name='id']:checked"
+      ).length;
+      console.log(countCheck);
+      if (countCheck == inputsId.length) {
+        inputCheckAll.checked = true;
+      } else {
+        inputCheckAll.checked = false;
+      }
+    });
+  });
+}
+//  End check box

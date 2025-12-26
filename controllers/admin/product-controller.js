@@ -54,7 +54,7 @@ module.exports.product = async (req, res) => {
 };
 
 // Controllers Change Status
-// Get /admin/products/change-status/:status/:id
+// Patch /admin/products/change-status/:status/:id
 
 module.exports.changeStatus = async (req, res) => {
   // tạo id và status
@@ -64,4 +64,9 @@ module.exports.changeStatus = async (req, res) => {
   await Product.updateOne({ _id: id }, { status, status });
   // dùng để chuyển hướng về lại links
   res.redirect("/admin/products");
+};
+
+module.exports.changeMulti = async (req, res) => {
+  console.log(req.body);
+  res.send("oke");
 };

@@ -1,7 +1,13 @@
 const express = require("express");
+// 7 đè phương thức
 const methodOverride = require("method-override");
+// 8 lấy dữ liệu từ body
+const bodyParser = require("body-parser");
 const app = express();
+//7
 app.use(methodOverride("_method"));
+//8
+app.use(bodyParser.urlencoded());
 
 //  3 config dotenv để sử dụng biến môi trường
 require("dotenv").config();

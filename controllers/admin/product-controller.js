@@ -6,7 +6,9 @@ const paginationHelper = require("../../helpers/pagination");
 // controllers/admin/product-controller.jS
 // Get /admin/products
 module.exports.product = async (req, res) => {
-  let find = {};
+  let find = {
+    // deleted: true,
+  };
   // console.log(req.query.status);
   // console.log(req.query.keyword);
 
@@ -87,11 +89,17 @@ module.exports.changeMulti = async (req, res) => {
   res.redirect("/admin/products");
 };
 
-// Controllers Deltete Item
-// [Delete] /admin/delete/id
+//4 Controllers Deltete Item
+// [Delete] /admin/products/delete/id
 module.exports.deleteItem = async (req, res) => {
-  console.log(req.params.id);
+  // console.log(req.params.id);
   const id = req.params.id;
-  await Product.deleteOne({ _id: id });
+  // xóa vĩnh viễn
+  // await Product.deleteOne({ _id: id });
+  //  xóa mềm còn trong data , yêu cầu find : phải tìm các sp có trạng thái deleted : false
+  await Product.updateOne(
+    { _id: id },
+    { deleted: true, deletedAt: new Date() }
+  );
   res.redirect("/admin/products");
 };

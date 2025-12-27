@@ -90,12 +90,12 @@ if (formChangeMulti) {
 
 //  Phần xóa sản phẩm : deltete
 
-const ButtonDelete = document.querySelectorAll("[data-delete]");
-// console.log(ButtonDelete);
-if (ButtonDelete.length > 0) {
+const buttonDelete = document.querySelectorAll("[data-delete]");
+// console.log(buttonDelete);
+if (buttonDelete.length > 0) {
   const formDeleteItem = document.querySelector("#delete-item");
   const pathDelete = formDeleteItem.getAttribute("data-path");
-  ButtonDelete.forEach((item) => {
+  buttonDelete.forEach((item) => {
     // console.log(item);
     item.addEventListener("click", () => {
       const isConfirm = confirm("bạn chắc chắn xóa vĩnh viễn");
@@ -103,7 +103,7 @@ if (ButtonDelete.length > 0) {
         console.log("đã xóa");
         const id = item.getAttribute("data-id");
         console.log(id);
-        console.log(pathDelete);
+        // console.log(pathDelete);
         const action = `${pathDelete}/${id}?_method=DELETE`;
         console.log(action);
         formDeleteItem.action = action;

@@ -22,7 +22,7 @@ block main
   .card.mb-3
     .card-header Danh sách sản phẩm
     .card-body
-      +form-change-multi('${prefixAdmin}/products/change-multi?_method=PATCH')
+      +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
 
 
       table(

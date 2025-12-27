@@ -49,13 +49,41 @@ if (checkboxMulti) {
       const countCheck = checkboxMulti.querySelectorAll(
         "input[name='id']:checked"
       ).length;
-      console.log(countCheck);
+      // console.log(countCheck);
       if (countCheck == inputsId.length) {
         inputCheckAll.checked = true;
       } else {
         inputCheckAll.checked = false;
       }
     });
+  });
+}
+
+const formChangeMulti = document.querySelector("[form-change-multi]");
+// console.log(formChangeMulti);
+if (formChangeMulti) {
+  formChangeMulti.addEventListener("submit", (e) => {
+    e.preventDefault();
+    // console.log(e);
+    const checkboxMulti = document.querySelector("[checkbox-multi]");
+    const inputsChecked = checkboxMulti.querySelectorAll(
+      "input[name='id']:checked"
+    );
+    // console.log(inputsChecked);
+    if (inputsChecked.length > 0) {
+      const inputIds = formChangeMulti.querySelector("input[name='ids']");
+      let ids = [];
+      inputsChecked.forEach((input) => {
+        const id = input.value;
+        ids.push(id);
+      });
+      console.log(ids.join(", "));
+      inputIds.value = ids.join(", ");
+      formChangeMulti.submit();
+    } else {
+      console.log("chưa tíck giá trị");
+      // alert("chuaw tick");
+    }
   });
 }
 //  End check box

@@ -1,11 +1,11 @@
 //  cập nhật status
-console.log("Change Status Product Page");
+// console.log("Change Status Product Page");
 const buttonsChangeStatus = document.querySelectorAll("[button-change-status]");
 
 if (buttonsChangeStatus.length > 0) {
   const formChangeStatus = document.querySelector("#form-change-status");
   const path = formChangeStatus.getAttribute("data-path");
-  console.log("Path change status: ", path);
+  // console.log("Path change status: ", path);
   buttonsChangeStatus.forEach((button) => {
     button.addEventListener("click", () => {
       const statusCurrent = button.getAttribute("data-status");
@@ -87,3 +87,28 @@ if (formChangeMulti) {
   });
 }
 //  End check box
+
+//  Phần xóa sản phẩm : deltete
+
+const ButtonDelete = document.querySelectorAll("[data-delete]");
+// console.log(ButtonDelete);
+if (ButtonDelete.length > 0) {
+  const formDeleteItem = document.querySelector("#delete-item");
+  const pathDelete = formDeleteItem.getAttribute("data-path");
+  ButtonDelete.forEach((item) => {
+    // console.log(item);
+    item.addEventListener("click", () => {
+      const isConfirm = confirm("bạn chắc chắn xóa vĩnh viễn");
+      if (isConfirm) {
+        console.log("đã xóa");
+        const id = item.getAttribute("data-id");
+        console.log(id);
+        console.log(pathDelete);
+        const action = `${pathDelete}/${id}?_method=DELETE`;
+        console.log(action);
+        formDeleteItem.action = action;
+        formDeleteItem.submit();
+      }
+    });
+  });
+}

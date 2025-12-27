@@ -7,5 +7,6 @@ router.get("/", controller.product);
 //  đổi phương thức từ get thành patch nhờ method-ovveride
 router.patch("/change-status/:status/:id", controller.changeStatus);
 router.patch("/change-multi", controller.changeMulti);
+router.delete("/delete/:id", controller.deleteItem);
 
 module.exports = router;

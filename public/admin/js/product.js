@@ -23,7 +23,7 @@ if (buttonsChangeStatus.length > 0) {
   });
 }
 
-// Checkbox multi
+// -- checkbox multi khi click
 const checkboxMulti = document.querySelector("[checkbox-multi]");
 if (checkboxMulti) {
   // console.log(checkboxMulti);
@@ -59,6 +59,8 @@ if (checkboxMulti) {
   });
 }
 
+// --Dùng để áp dụng thay đổi cho nhiều sp --
+
 const formChangeMulti = document.querySelector("[form-change-multi]");
 // console.log(formChangeMulti);
 if (formChangeMulti) {
@@ -70,6 +72,17 @@ if (formChangeMulti) {
       "input[name='id']:checked"
     );
     // console.log(inputsChecked);
+    // Xóa nhiều sản phẩm
+    const typeChange = e.target.elements.type.value;
+    if (typeChange == "delete-all") {
+      const isConfirm = confirm("bạn chắc chắn muốn xóa");
+      if (!isConfirm) {
+        return;
+      }
+    }
+    // end xoas nhieeuf
+
+    // --cập nhật trạng thái
     if (inputsChecked.length > 0) {
       const inputIds = formChangeMulti.querySelector("input[name='ids']");
       let ids = [];
@@ -81,12 +94,11 @@ if (formChangeMulti) {
       inputIds.value = ids.join(", ");
       formChangeMulti.submit();
     } else {
-      console.log("chưa tíck giá trị");
+      alert("chưa tíck giá trị");
       // alert("chuaw tick");
     }
   });
 }
-//  End check box
 
 //  Phần xóa sản phẩm : deltete
 

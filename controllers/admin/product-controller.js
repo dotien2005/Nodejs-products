@@ -131,5 +131,9 @@ module.exports.deleteItem = async (req, res) => {
     { _id: id },
     { deleted: true, deletedAt: new Date() }
   );
+  req.flash(
+    "changeStatus",
+    `${ids.length} sản phẩm đã được Xóa Hoàn toàn data`
+  );
   res.redirect("/admin/products");
 };

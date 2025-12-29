@@ -98,6 +98,7 @@ module.exports.changeMulti = async (req, res) => {
         { _id: { $in: ids } },
         { deleted: "true", deletedAt: new Date() }
       );
+      req.flash("changeStatus", `${ids.length} sản phẩm đã được Xóa`);
       break;
     case "change-position":
       for (const item of ids) {

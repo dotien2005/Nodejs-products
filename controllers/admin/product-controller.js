@@ -109,6 +109,7 @@ module.exports.changeMulti = async (req, res) => {
         // console.log(id);
         // console.log(position);
         await Product.updateOne({ _id: id }, { position: position });
+        req.flash("changeStatus", `${ids.length} sản phẩm đã được đổi vị trí`);
       }
       break;
 
@@ -118,7 +119,7 @@ module.exports.changeMulti = async (req, res) => {
   res.redirect("/admin/products");
 };
 
-//4 Controllers Deltete Item
+//4 Controllers Deltete Item ---- Xóa luôn khỏi data
 // [Delete] /admin/products/delete/id
 module.exports.deleteItem = async (req, res) => {
   // console.log(req.params.id);

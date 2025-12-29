@@ -111,7 +111,6 @@ if (formChangeMulti) {
 }
 
 //  Phần xóa sản phẩm : deltete
-
 const buttonDelete = document.querySelectorAll("[data-delete]");
 // console.log(buttonDelete);
 if (buttonDelete.length > 0) {
@@ -134,3 +133,4 @@ if (buttonDelete.length > 0) {
     });
   });
 }
+//--END  Phần xóa sản phẩm : deltete

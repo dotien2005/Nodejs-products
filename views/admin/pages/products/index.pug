@@ -3,10 +3,11 @@ include ../../mixins/filter-status.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
-
+include ../../mixins/alert-changeStatus.pug
 block main  
   h1 Trang Quản Lý Sản Phẩm
   p Đây là trang quản lý sản phẩm dành cho quản trị viên.
+  +alert-changeStatus(time)
 
   .card.mb-3
     .card-header Bộ lọc và Tìm kiếm

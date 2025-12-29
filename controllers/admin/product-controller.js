@@ -57,7 +57,7 @@ module.exports.product = async (req, res) => {
 };
 
 // Controllers Change Status
-// Patch /admin/products/change-status/:status/:id
+// {Patch} /admin/products/change-status/:status/:id
 
 module.exports.changeStatus = async (req, res) => {
   // tạo id và status
@@ -65,6 +65,7 @@ module.exports.changeStatus = async (req, res) => {
   const id = req.params.id;
   // cập nhật id và status
   await Product.updateOne({ _id: id }, { status, status });
+  req.flash("changeStatus", "cập nhật trạng thái thành công");
   // dùng để chuyển hướng về lại links
   res.redirect("/admin/products");
 };
@@ -77,10 +78,18 @@ module.exports.changeMulti = async (req, res) => {
   switch (type) {
     case "active":
       await Product.updateMany({ _id: { $in: ids } }, { status: "active" });
+      req.flash(
+        "changeStatus",
+        `${ids.length} sản phẩm đã được cập nhật trạng thái`
+      );
 
       break;
     case "inactive":
       await Product.updateMany({ _id: { $in: ids } }, { status: "inactive" });
+      req.flash(
+        "changeStatus",
+        `${ids.length} sản phẩm đã được cập nhật trạng thái`
+      );
       break;
 
     // xóa mềm

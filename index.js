@@ -3,11 +3,20 @@ const express = require("express");
 const methodOverride = require("method-override");
 // 8 lấy dữ liệu từ body
 const bodyParser = require("body-parser");
+// 9 show thông báo
+const flash = require("express-flash");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 const app = express();
 //7
 app.use(methodOverride("_method"));
 //8
 app.use(bodyParser.urlencoded());
+// 9 FLASH
+app.use(cookieParser("AHBCĐNDAER"));
+app.use(session({ cookie: { maxAge: 60000 } }));
+app.use(flash());
+//END 9 FLASH
 
 //  3 config dotenv để sử dụng biến môi trường
 require("dotenv").config();

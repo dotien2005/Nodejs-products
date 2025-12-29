@@ -2,8 +2,7 @@
 const Product = require("../../models/product.models.js");
 
 module.exports.products = async (req, res) => {
-  const products = await Product.find({});
-
+  const products = await Product.find({}).sort({ position: "desc" });
   const newProducts = products.map((item) => {
     item.priceNew = (
       (item.price * (100 - item.discountPercentage)) /

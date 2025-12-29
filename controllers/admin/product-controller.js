@@ -44,6 +44,7 @@ module.exports.product = async (req, res) => {
   // end Pagination
 
   const products = await Product.find(find)
+    .sort({ position: "desc" })
     .limit(objeactPagination.limitItem)
     .skip(objeactPagination.skip);
   res.render("admin/pages/products/index.pug", {
@@ -88,6 +89,17 @@ module.exports.changeMulti = async (req, res) => {
         { _id: { $in: ids } },
         { deleted: "true", deletedAt: new Date() }
       );
+      break;
+    case "change-position":
+      for (const item of ids) {
+        let [id, position] = item.split("-");
+        // loai bỏ dấu gạch -
+        // console.log(item.split("-"));
+        position = parseInt(position);
+        // console.log(id);
+        // console.log(position);
+        await Product.updateOne({ _id: id }, { position: position });
+      }
       break;
 
     default:

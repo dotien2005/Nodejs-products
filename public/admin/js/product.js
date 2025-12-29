@@ -74,6 +74,7 @@ if (formChangeMulti) {
     // console.log(inputsChecked);
     // Xóa nhiều sản phẩm
     const typeChange = e.target.elements.type.value;
+
     if (typeChange == "delete-all") {
       const isConfirm = confirm("bạn chắc chắn muốn xóa");
       if (!isConfirm) {
@@ -88,7 +89,16 @@ if (formChangeMulti) {
       let ids = [];
       inputsChecked.forEach((input) => {
         const id = input.value;
-        ids.push(id);
+        // thay đổi vị trí
+        if (typeChange == "change-position") {
+          const position = input
+            .closest("tr")
+            .querySelector("input[name='position']").value;
+          // console.log(`${id}-${position}`);
+          ids.push(`${id}-${position}`);
+        } else {
+          ids.push(id);
+        }
       });
       console.log(ids.join(", "));
       inputIds.value = ids.join(", ");

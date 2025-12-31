@@ -3,8 +3,12 @@ const Product = require("../../models/product.models");
 const filterStatusHelper = require("../../helpers/filerStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
-// controllers/admin/product-controller.jS
-// Get /admin/products
+
+// ---
+const systemConfig = require("../../config/system");
+// ---
+
+// ---[Get] /admin/products
 module.exports.product = async (req, res) => {
   let find = {
     // deleted: true,
@@ -57,8 +61,7 @@ module.exports.product = async (req, res) => {
 };
 
 // Controllers Change Status
-// {Patch} /admin/products/change-status/:status/:id
-
+// ---2 [Patch] /admin/products/change-status/:status/:id
 module.exports.changeStatus = async (req, res) => {
   // tạo id và status
   const status = req.params.status;
@@ -69,7 +72,7 @@ module.exports.changeStatus = async (req, res) => {
   // dùng để chuyển hướng về lại links
   res.redirect("/admin/products");
 };
-
+//  -- cập nhật trạng thái sản phẩm
 module.exports.changeMulti = async (req, res) => {
   // console.log(req.body);
   const type = req.body.type;
@@ -136,4 +139,31 @@ module.exports.deleteItem = async (req, res) => {
     `${ids.length} sản phẩm đã được Xóa Hoàn toàn data`
   );
   res.redirect("/admin/products");
+};
+// -- [GET] admin/products/create
+module.exports.create = (req, res) => {
+  res.render("admin/pages/products/create.pug", {
+    pageTitle: "Create Products",
+  });
+};
+
+// -- [POST] admin/products/create
+module.exports.createPost = async (req, res) => {
+  req.body.price = parseInt(req.body.price);
+  req.body.discountPercentage = parseInt(req.body.discountPercentage);
+  req.body.stock = parseInt(req.body.stock);
+  //  -- xử lý logic thứ tự--
+  if (req.body.position == "") {
+    const countProducts = await Product.countDocuments();
+    req.body.position = countProducts + 1;
+    console.log(req.body.position);
+  } else {
+    req.body.position = parseInt(req.body.position);
+  }
+  //  --end xử lý logic thứ tự--
+  // -- lưu vào db
+  const product = new Product(req.body);
+  await product.save();
+  // --
+  res.redirect(`${systemConfig.prefixAdmin}/products`);
 };

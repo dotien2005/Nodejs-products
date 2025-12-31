@@ -59,7 +59,7 @@ if (checkboxMulti) {
   });
 }
 
-// --Dùng để áp dụng thay đổi cho nhiều sp --
+// -- Form thay đổi áp dụng cho nhiều sp --
 
 const formChangeMulti = document.querySelector("[form-change-multi]");
 // console.log(formChangeMulti);

@@ -13,3 +13,5 @@ thư viện
 -- express-flash : hiển thị thông báo
 
 -- mongoose-slug-updater: cập nhật tự thêm slug cho data
+
+-- package upload ảnh lên từ máy : multer

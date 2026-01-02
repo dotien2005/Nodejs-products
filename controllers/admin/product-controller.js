@@ -149,7 +149,13 @@ module.exports.create = (req, res) => {
 
 // -- [POST] admin/products/create
 module.exports.createPost = async (req, res) => {
+  console.log(req.body);
   console.log(req.file);
+  if (!req.body.title) {
+    req.flash("error", `vui lòng nhập tiêu đề`);
+    res.redirect("/admin/products/create");
+    return;
+  }
   req.body.price = parseInt(req.body.price);
   req.body.discountPercentage = parseInt(req.body.discountPercentage);
   req.body.stock = parseInt(req.body.stock);
@@ -162,7 +168,10 @@ module.exports.createPost = async (req, res) => {
     req.body.position = parseInt(req.body.position);
   }
   // link cho ảnh được lưu vào thư mục uploads
-  req.body.thumbnail = `/uploads/${req.file.filename}`;
+
+  if (req.file) {
+    req.body.thumbnail = `/uploads/${req.file.filename}`;
+  }
   //  --end xử lý logic thứ tự--
   // -- lưu vào db
   const product = new Product(req.body);

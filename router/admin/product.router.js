@@ -6,6 +6,8 @@ const multer = require("multer");
 const storageMulter = require("../../helpers/strongMulter");
 const upload = multer({ storage: storageMulter() });
 //-1 ---
+// 2 :Validate dữ liệu
+const validate = require("../../validates/admin/product.validate");
 const controller = require("../../controllers/admin/product-controller");
 
 router.get("/", controller.product);
@@ -15,6 +17,11 @@ router.patch("/change-multi", controller.changeMulti);
 router.delete("/delete/:id", controller.deleteItem);
 router.get("/create", controller.create);
 // thêm tính năng upload của multer
-router.post("/create", upload.single("thumbnail"), controller.createPost);
+router.post(
+  "/create",
+  upload.single("thumbnail"),
+  validate.createPost,
+  controller.createPost
+);
 
 module.exports = router;

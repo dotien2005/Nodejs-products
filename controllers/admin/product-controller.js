@@ -151,11 +151,8 @@ module.exports.create = (req, res) => {
 module.exports.createPost = async (req, res) => {
   console.log(req.body);
   console.log(req.file);
-  if (!req.body.title) {
-    req.flash("error", `vui lòng nhập tiêu đề`);
-    res.redirect("/admin/products/create");
-    return;
-  }
+  // --validate dữ liệu 1
+
   req.body.price = parseInt(req.body.price);
   req.body.discountPercentage = parseInt(req.body.discountPercentage);
   req.body.stock = parseInt(req.body.stock);

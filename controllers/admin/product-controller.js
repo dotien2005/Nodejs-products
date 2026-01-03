@@ -176,3 +176,8 @@ module.exports.createPost = async (req, res) => {
   // --
   res.redirect(`${systemConfig.prefixAdmin}/products`);
 };
+
+// [PATCH] : admin/products/edit
+module.exports.edit = (req, res) => {
+  red.send("helo");
+};

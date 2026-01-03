@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 //1 sử dụng package :multer để cập nhật ảnh
 const multer = require("multer");
-//  dest trỏ tới thư mục cấp cao nhất
+// biến dest trỏ tới thư mục cấp cao nhất
 const storageMulter = require("../../helpers/strongMulter");
 const upload = multer({ storage: storageMulter() });
 //-1 ---
@@ -23,5 +23,6 @@ router.post(
   validate.createPost,
   controller.createPost
 );
+router.patch("/edit/:id", controller.edit);
 
 module.exports = router;

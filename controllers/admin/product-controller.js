@@ -179,5 +179,7 @@ module.exports.createPost = async (req, res) => {
 
 // [PATCH] : admin/products/edit
 module.exports.edit = (req, res) => {
-  red.send("helo");
+  res.render("admin/pages/products/edit.pug", {
+    pageTitle: "Dashboard Page",
+  });
 };

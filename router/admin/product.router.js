@@ -23,6 +23,6 @@ router.post(
   validate.createPost,
   controller.createPost
 );
-router.patch("/edit/:id", controller.edit);
+router.get("/edit/:id", controller.edit);
 
 module.exports = router;

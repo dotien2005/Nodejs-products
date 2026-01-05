@@ -188,7 +188,7 @@ module.exports.edit = async (req, res) => {
     const product = await Product.findOne(find);
     console.log(product);
     res.render("admin/pages/products/edit.pug", {
-      pageTitle: "Dashboard Page",
+      pageTitle: "Edit Products",
       product: product,
     });
   } catch (error) {
@@ -223,4 +223,24 @@ module.exports.editPatch = async (req, res) => {
     req.flash("success", `CẬP NHẬT SẢN PHẨM THÀNH CÔNG`);
   } catch (error) {}
   res.redirect(`${systemConfig.prefixAdmin}/products/edit/${id}`);
+};
+
+// [GET] : admin/products/detail
+module.exports.detail = async (req, res) => {
+  try {
+    console.log(req.params.id);
+    const find = {
+      // deleted: false,
+      _id: req.params.id,
+    };
+    const product = await Product.findOne(find);
+    console.log(product);
+    res.render("admin/pages/products/detail.pug", {
+      pageTitle: product.title,
+      product: product,
+    });
+  } catch (error) {
+    req.flash("error", `lỗi id sản phẩm`);
+    res.redirect(`${systemConfig.prefixAdmin}/products`);
+  }
 };

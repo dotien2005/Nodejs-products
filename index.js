@@ -25,13 +25,15 @@ const port = process.env.PORT;
 // 5 database mongoose -  phải đứng sau require dotenv
 const database = require("./config/database.js");
 database.connect();
-
+//--
+console.log(__dirname);
 // 1  using template engines express
-app.set("views", "./views");
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
 //4 static files
-app.use(express.static("public"));
+
+app.use(express.static(`${__dirname}/public`));
 
 // 6 app local variable
 const systemConfig = require("./config/system");

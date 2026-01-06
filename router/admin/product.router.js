@@ -9,6 +9,10 @@ const upload = multer({ storage: storageMulter() });
 // 2 :Validate dữ liệu
 const validate = require("../../validates/admin/product.validate");
 const controller = require("../../controllers/admin/product-controller");
+//  cloud
+const cloudinary = require("cloudinary").v2;
+const streamifier = require("streamifier");
+// end  cloud
 
 router.get("/", controller.product);
 //  đổi phương thức từ get thành patch nhờ method-ovveride

@@ -149,8 +149,8 @@ module.exports.create = (req, res) => {
 
 // -- [POST] admin/products/create
 module.exports.createPost = async (req, res) => {
-  console.log(req.body);
-  console.log(req.file);
+  // console.log(req.body);
+  // console.log(req.file);
   // --validate dữ liệu 1
 
   req.body.price = parseInt(req.body.price);

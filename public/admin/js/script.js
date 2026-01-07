@@ -110,5 +110,17 @@ if (sort) {
     url.searchParams.delete("sortValue");
     window.location.href = url.href;
   });
+  // theem select
+  const sortKey = url.searchParams.get("sortKey");
+  const sortValue = url.searchParams.get("sortValue");
+  if (sortKey && sortValue) {
+    const stringSelect = `${sortKey}-${sortValue}`;
+    // console.log(stringSelect);
+    const optionSelected = sortSelect.querySelector(
+      `option[value='${stringSelect}']`
+    );
+    // console.log(optionSelected);
+    optionSelected.selected = true;
+  }
 }
 // -- END SORT

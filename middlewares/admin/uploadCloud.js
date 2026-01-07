@@ -3,9 +3,9 @@ const cloudinary = require("cloudinary").v2;
 const streamifier = require("streamifier");
 
 cloudinary.config({
-  cloud_name: "dcoujkven",
-  api_key: "558121248779264",
-  api_secret: "YnRpvuwz74HVJesDSjkG41CaifE", // Click 'View API Keys' above to copy your API secret
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET, // Click 'View API Keys' above to copy your API secret
 });
 // end  cloud
 
@@ -27,7 +27,7 @@ module.exports.upload = (req, res, next) => {
 
     async function upload(req) {
       let result = await streamUpload(req);
-      console.log(result);
+      // console.log(result);
       // console.log(req.file);
       req.body[req.file.fieldname] = result.secure_url;
       next();

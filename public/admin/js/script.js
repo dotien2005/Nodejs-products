@@ -86,3 +86,29 @@ if (uploadImage) {
   });
 }
 // -- End up
+
+// --SORT
+const sort = document.querySelector("[sort]");
+if (sort) {
+  let url = new URL(window.location.href);
+  const sortSelect = sort.querySelector("[sort-select]");
+  const sortClear = sort.querySelector("[sort-clear]");
+  sortSelect.addEventListener("change", (e) => {
+    // e.preventDefault();
+    // console.log(e.target.value);
+    const value = e.target.value;
+    // console.log(value.split("-"));
+    const [sortKey, sortValue] = value.split("-");
+    console.log(sortKey);
+    console.log(sortValue);
+    url.searchParams.set("sortKey", sortKey);
+    url.searchParams.set("sortValue", sortValue);
+    window.location.href = url.href;
+  });
+  sortClear.addEventListener("click", () => {
+    url.searchParams.delete("sortKey");
+    url.searchParams.delete("sortValue");
+    window.location.href = url.href;
+  });
+}
+// -- END SORT

@@ -44,11 +44,21 @@ module.exports.product = async (req, res) => {
     req.query,
     countProduct
   );
-
   // end Pagination
 
+  // ------sort
+  let sort = {};
+  if (req.query.sortKey && req.query.sortValue) {
+    // sort.price = "des",
+    sort[req.query.sortKey] = req.query.sortValue;
+  } else {
+    sort.position = "desc";
+  }
+
+  // End sort
+
   const products = await Product.find(find)
-    .sort({ position: "desc" })
+    .sort(sort)
     .limit(objeactPagination.limitItem)
     .skip(objeactPagination.skip);
   res.render("admin/pages/products/index.pug", {

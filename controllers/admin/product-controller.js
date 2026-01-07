@@ -165,10 +165,11 @@ module.exports.createPost = async (req, res) => {
     req.body.position = parseInt(req.body.position);
   }
   //  --end xử lý logic thứ tự--
+
   // link cho ảnh được lưu vào thư mục uploads
-  if (req.file) {
-    req.body.thumbnail = `/uploads/${req.file.filename}`;
-  }
+  // if (req.file) {
+  //   req.body.thumbnail = `/uploads/${req.file.filename}`;
+  // }
 
   // -- lưu vào db
   const product = new Product(req.body);

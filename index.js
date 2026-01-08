@@ -1,4 +1,6 @@
 const express = require("express");
+// 10
+const path = require("path");
 // 7 đè phương thức
 const methodOverride = require("method-override");
 // 8 lấy dữ liệu từ body
@@ -17,6 +19,13 @@ app.use(cookieParser("AHBCĐNDAER"));
 app.use(session({ cookie: { maxAge: 60000 } }));
 app.use(flash());
 //END 9 FLASH
+
+//10 TinyMCE
+app.use(
+  "/tinymce",
+  express.static(path.join(__dirname, "node_modules", "tinymce"))
+);
+//ENd TinyMCE
 
 //  3 config dotenv để sử dụng biến môi trường
 require("dotenv").config();

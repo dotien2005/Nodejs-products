@@ -11,3 +11,9 @@ module.exports.create = (req, res) => {
     pageTitle: "Create Category",
   });
 };
+
+// -- [POST] admin/products-category/create
+module.exports.createPost = async (req, res) => {
+  console.log(req.body);
+  res.send("ok");
+};

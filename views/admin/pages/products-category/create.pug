@@ -3,16 +3,16 @@ include ../../mixins/alert.pug
 
 block main
   +alert-error(4000)
-  h1(class="mb-4") Thêm mới sản phẩm
+  h1(class="mb-4") Thêm mới danh mục Sản Phẩm
 
   form(
-    action=`${prefixAdmin}/products/create`
+    action=`${prefixAdmin}/products-category/create`
     id="form-create-product"
     method="POST"
     enctype="multipart/form-data"
   )
     div(class="form-group")
-      label(for="title") Tiêu đề
+      label(for="parent_id") Tiêu đề
       input(
         type="text"
         class="form-control"
@@ -20,6 +20,16 @@ block main
         name="title"
         required
       )
+    div(class="form-group")
+      label(for="parent_id") Danh mục Cha
+      input(
+        type="text"
+        class="form-control"
+        id="parent_id"
+        name="parent_id"
+        required
+      )
+
 
     div(class="form-group")
       label(for="desc") Mô tả
@@ -30,39 +40,7 @@ block main
         rows="5"
       )
 
-    div(class="form-group")
-      label(for="price") Giá
-      input(
-        type="number"
-        class="form-control"
-        id="price"
-        name="price"
-        value="0"
-        min="0"
-      )
 
-    div(class="form-group")
-      label(for="discount") % Giảm giá
-      input(
-        type="number"
-        class="form-control"
-        id="discount"
-        name="discountPercentage"
-        value="0"
-        min="0"
-      )
-
-
-    div(class="form-group")
-      label(for="stock") Số lượng
-      input(
-        type="number"
-        class="form-control"
-        id="stock"
-        name="stock"
-        value="0"
-        min="0"
-      )
     div(
       class="form-group"
       upload-image

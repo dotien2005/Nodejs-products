@@ -1,0 +1,37 @@
+const mongoose = require("mongoose");
+const slug = require("mongoose-slug-updater");
+mongoose.plugin(slug);
+const productCategorSchema = new mongoose.Schema(
+  {
+    title: String,
+    description: String,
+    price: Number,
+    discountPercentage: Number,
+    stock: Number,
+    thumbnail: String,
+    status: String,
+    position: Number,
+    deleted: {
+      type: Boolean,
+      default: false,
+    },
+    deletedAt: Date,
+    slug: {
+      type: String,
+      slug: "title",
+      unique: true,
+    },
+  },
+  {
+    // hiển thị thời gian
+    timestamps: true,
+  }
+);
+
+const ProductCategory = mongoose.model(
+  "ProductCategory",
+  productCategorSchema,
+  "products-category"
+);
+
+module.exports = ProductCategory;

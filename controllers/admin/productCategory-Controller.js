@@ -26,8 +26,8 @@ module.exports.create = (req, res) => {
 module.exports.createPost = async (req, res) => {
   // console.log(req.body);
   if (req.body.position == "") {
-    const count = ProductCategory.countDocuments();
-    req.body.position = count + 1;
+    const counts = await ProductCategory.countDocuments();
+    req.body.position = counts + 1;
   } else {
     req.body.position = parseInt(req.body.position);
   }

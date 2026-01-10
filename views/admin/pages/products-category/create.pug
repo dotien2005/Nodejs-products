@@ -22,13 +22,21 @@ block main
       )
     div(class="form-group")
       label(for="parent_id") Danh mục Cha
-      input(
-        type="text"
+      //- input(
+      //-   type="text"
+      //-   class="form-control"
+      //-   id="parent_id"
+      //-   name="parent_id"
+      //- )
+      select(
         class="form-control"
         id="parent_id"
         name="parent_id"
       )
-
+        option(value="") -- Chọn danh mục cha --
+          if(recordsPug)
+            each item in recordsPug 
+              option(value=item.id) #{item.title}
 
     div(class="form-group")
       label(for="desc") Mô tả

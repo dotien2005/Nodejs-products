@@ -15,10 +15,16 @@ module.exports.productCategory = async (req, res) => {
   });
 };
 
-// [GET] /admin/product-category
-module.exports.create = (req, res) => {
+// [GET] /admin/product-category/create
+module.exports.create = async (req, res) => {
+  let find = {
+    deleted: false,
+  };
+  const records = await ProductCategory.find(find);
+  console.log(records);
   res.render("admin/pages/products-category/create.pug", {
-    pageTitle: "Create Category",
+    pageTitle: "Tao danh muc san pham",
+    recordsPug: records,
   });
 };
 

@@ -23,7 +23,7 @@ module.exports.create = async (req, res) => {
   function createTree(arr, parentId = "") {
     const tree = [];
     arr.forEach((item) => {
-      if (item.parentId == parentId) {
+      if (item.parent_id == parentId) {
         const newItem = item;
         const children = createTree(arr, item.id);
         if (children.length > 0) {
@@ -37,8 +37,9 @@ module.exports.create = async (req, res) => {
 
   const records = await ProductCategory.find(find);
   const newRecords = createTree(records);
+  console.log(newRecords);
 
-  console.log(records);
+  // console.log(records);
   res.render("admin/pages/products-category/create.pug", {
     pageTitle: "Tao danh muc san pham",
     recordsPug: newRecords,

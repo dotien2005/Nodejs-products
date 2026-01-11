@@ -41,7 +41,7 @@ module.exports.create = async (req, res) => {
   console.log(records);
   res.render("admin/pages/products-category/create.pug", {
     pageTitle: "Tao danh muc san pham",
-    recordsPug: records,
+    recordsPug: newRecords,
   });
 };
 

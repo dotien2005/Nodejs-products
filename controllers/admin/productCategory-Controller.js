@@ -1,4 +1,5 @@
 const ProductCategory = require("../../models/product-category.models");
+const createTreeHelp = require("../../helpers/createTree.js");
 // --
 const systemConfig = require("../../config/system");
 
@@ -8,22 +9,22 @@ module.exports.productCategory = async (req, res) => {
     deleted: false,
   };
   // hiển thị giao diện de quy
-  function createTree(arr, parentId = "") {
-    const tree = [];
-    arr.forEach((item) => {
-      if (item.parent_id == parentId) {
-        const newItem = item;
-        const children = createTree(arr, item.id);
-        if (children.length > 0) {
-          newItem.children = children;
-        }
-        tree.push(newItem);
-      }
-    });
-    return tree;
-  }
+  // function createTree(arr, parentId = "") {
+  //   const tree = [];
+  //   arr.forEach((item) => {
+  //     if (item.parent_id == parentId) {
+  //       const newItem = item;
+  //       const children = createTree(arr, item.id);
+  //       if (children.length > 0) {
+  //         newItem.children = children;
+  //       }
+  //       tree.push(newItem);
+  //     }
+  //   });
+  //   return tree;
+  // }
   const records = await ProductCategory.find(find);
-  const newRecords = createTree(records);
+  const newRecords = createTreeHelp.tree(records);
 
   res.render("admin/pages/products-category/index.pug", {
     pageTitle: "Product Category",
@@ -36,23 +37,9 @@ module.exports.create = async (req, res) => {
   let find = {
     deleted: false,
   };
-  function createTree(arr, parentId = "") {
-    const tree = [];
-    arr.forEach((item) => {
-      if (item.parent_id == parentId) {
-        const newItem = item;
-        const children = createTree(arr, item.id);
-        if (children.length > 0) {
-          newItem.children = children;
-        }
-        tree.push(newItem);
-      }
-    });
-    return tree;
-  }
 
   const records = await ProductCategory.find(find);
-  const newRecords = createTree(records);
+  const newRecords = createTreeHelp.tree(records);
   console.log(newRecords);
 
   // console.log(records);

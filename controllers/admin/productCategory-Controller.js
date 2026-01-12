@@ -7,11 +7,27 @@ module.exports.productCategory = async (req, res) => {
   let find = {
     deleted: false,
   };
+  // hiển thị giao diện de quy
+  function createTree(arr, parentId = "") {
+    const tree = [];
+    arr.forEach((item) => {
+      if (item.parent_id == parentId) {
+        const newItem = item;
+        const children = createTree(arr, item.id);
+        if (children.length > 0) {
+          newItem.children = children;
+        }
+        tree.push(newItem);
+      }
+    });
+    return tree;
+  }
   const records = await ProductCategory.find(find);
+  const newRecords = createTree(records);
 
   res.render("admin/pages/products-category/index.pug", {
     pageTitle: "Product Category",
-    recordPug: records,
+    recordPug: newRecords,
   });
 };
 

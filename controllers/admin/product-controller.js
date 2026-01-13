@@ -191,13 +191,13 @@ module.exports.createPost = async (req, res) => {
 // [GET] : admin/products/edit
 module.exports.edit = async (req, res) => {
   try {
-    console.log(req.params.id);
+    // console.log(req.params.id);
     const find = {
       // deleted: false,
       _id: req.params.id,
     };
     const product = await Product.findOne(find);
-    console.log(product);
+    // console.log(product);
     res.render("admin/pages/products/edit.pug", {
       pageTitle: "Edit Products",
       product: product,
@@ -239,13 +239,13 @@ module.exports.editPatch = async (req, res) => {
 // [GET] : admin/products/detail
 module.exports.detail = async (req, res) => {
   try {
-    console.log(req.params.id);
+    // console.log(req.params.id);
     const find = {
       // deleted: false,
       _id: req.params.id,
     };
     const product = await Product.findOne(find);
-    console.log(product);
+    // console.log(product);
     res.render("admin/pages/products/detail.pug", {
       pageTitle: product.title,
       product: product,

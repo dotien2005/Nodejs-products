@@ -67,8 +67,14 @@ module.exports.createPost = async (req, res) => {
 // [GET] /admin/product-category/edit/:id
 module.exports.edit = async (req, res) => {
   const id = req.params.id;
-  console.log(id);
+  const data = await ProductCategory.findOne({
+    _id: id,
+    deleted: false,
+  });
+  // console.log(id);
+  // console.log(data);
   res.render("admin/pages/products-category/edit.pug", {
     pageTitle: "Chỉnh Sửa Danh Mục Products",
+    data: data,
   });
 };

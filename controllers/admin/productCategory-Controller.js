@@ -63,3 +63,12 @@ module.exports.createPost = async (req, res) => {
 
   res.redirect(`${systemConfig.prefixAdmin}/products-category`);
 };
+
+// [GET] /admin/product-category/edit/:id
+module.exports.edit = async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  res.render("admin/pages/products-category/edit.pug", {
+    pageTitle: "Chỉnh Sửa Danh Mục Products",
+  });
+};

@@ -73,8 +73,16 @@ module.exports.edit = async (req, res) => {
   });
   // console.log(id);
   // console.log(data);
+
+  const records = await ProductCategory.find({
+    deleted: false,
+  });
+  const newRecords = createTreeHelp.tree(records);
+  console.log(newRecords);
+
   res.render("admin/pages/products-category/edit.pug", {
     pageTitle: "Chỉnh Sửa Danh Mục Products",
     data: data,
+    recordsPug: newRecords,
   });
 };

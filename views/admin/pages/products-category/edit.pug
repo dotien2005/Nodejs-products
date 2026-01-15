@@ -10,7 +10,7 @@ block main
 
 
   form(
-    action=`${prefixAdmin}/products-category/create`
+    action=`${prefixAdmin}/products-category/edit/${data.id}?_method=PATCH`
     id="form-create-product"
     method="POST"
     enctype="multipart/form-data"
@@ -108,5 +108,5 @@ block main
       button(
         type="submit"
         class="btn btn-primary"
-      ) Tạo mới
+      ) Cập nhật
   script(src="/admin/js/product.js")

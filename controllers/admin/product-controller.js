@@ -210,10 +210,18 @@ module.exports.edit = async (req, res) => {
     };
     const product = await Product.findOne(find);
     // console.log(product);
+
+    // ----- thuộc tính danh mục sản phẩm
+    const category = await ProductCategory.find({
+      deleted: false,
+    });
+    const newCategory = createTreeHelp.tree(category);
     res.render("admin/pages/products/edit.pug", {
       pageTitle: "Edit Products",
       product: product,
+      category: newCategory,
     });
+    // ----- end thuộc tính danh mục sản phẩm
   } catch (error) {
     req.flash("error", `lỗi id sản phẩm`);
 

@@ -1,0 +1,45 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main
+  h1(class="mb-4") Chỉnh Sửa Nhóm Quyền
+  +alert-success(3000)
+  +alert-error(3000)
+
+  form(
+    action=`${prefixAdmin}/roles/edit/${dataEdit.id}?_method=PATCH`
+    method="POST"
+    ) 
+      div(class="form-group")
+        label(for="title") Tên Nhóm Quyền
+        input(
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          value=`${dataEdit.title}`
+        )
+      div(class="form-group mt-3")
+        label(for="desc") Mô Tả Nhóm Quyền 
+        input(
+          type="text"
+          class="form-control"
+          id="desc"
+          name="description"
+          value=`${dataEdit.description}`
+        ) 
+      div(class="form-group mt-4")
+        button(type="submit" class="btn btn-primary") Tạo mới
+
+
+
+
+
+
+
+
+
+
+
+
+

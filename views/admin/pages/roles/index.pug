@@ -1,15 +1,54 @@
 extends ../../layouts/default.pug
 block main  
-  h1 Trang Nhóm Quyền
+  h1(class="mb-4") Trang Nhóm Quyền
   p Đây là trang quản lý nhóm quyền.
 
   .card.mb-3
     .card-header Danh Sách Nhóm Quyền
-      .card-body
-        .row 
-          .col-8
-          .col-4 
-            a(
-              href=`${prefixAdmin}/roles/create`
-              class="btn btn-outline-success"
-            ) + Thêm mới  
+    .card-body
+      .row 
+        .col-8
+        .col-4.text-right
+          a(
+            href=`${prefixAdmin}/roles/create`
+            class="btn btn-outline-success"
+          ) + Thêm mới
+
+
+        table(
+          class="table table-hover table-sm"
+        )
+          thead
+            tr
+              th STT
+              th Tên Nhóm Quyền
+              th Mô Tả
+              th Hành Động
+          tbody
+            if(rolePug.length>0)
+              each item, index in rolePug
+
+                tr
+                  td #{index + 1}
+                  td #{item.title}
+                  td #{item.description}
+                  td
+                    a(
+                      href=`${prefixAdmin}/roles`
+                      class="btn btn-secondary btn-sm"
+                    ) Chi tiết
+                    a(
+                      href=`${prefixAdmin}/roles`
+                      class="btn btn-warning btn-sm"
+                    ) Sửa             
+                    a(
+                      href=`${prefixAdmin}/roles`
+                      class="btn btn-danger btn-sm"
+                    ) Xóa  
+
+            else 
+              tr
+                td(
+                  colspan="4"
+                  class="text-center"
+                ) Không có nhóm quyền nào.

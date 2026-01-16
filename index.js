@@ -44,7 +44,7 @@ app.set("view engine", "pug");
 
 app.use(express.static(`${__dirname}/public`));
 
-// 6 app local variable
+// 6 app local variable PUG
 const systemConfig = require("./config/system");
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
 

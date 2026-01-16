@@ -23,11 +23,11 @@
 }
 /* end header */
 
-.footer{
-	background: #333;
-	color: #ddd;
-	text-align: center;
-	padding: 10px;
+.footer {
+  background: #333;
+  color: #ddd;
+  text-align: center;
+  padding: 10px;
 }
 
 /* end footer */
@@ -60,7 +60,6 @@
   font-weight: 600;
 }
 
-
 .product-item .inner-content .inner-price-new {
   font-size: 18px;
   font-weight: 600;
@@ -85,3 +84,7 @@
 }
 
 /* End product-item */
+
+.card .card-body .table .btn {
+  margin-right: 5px;
+}

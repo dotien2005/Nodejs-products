@@ -5,14 +5,14 @@ block main
   p Đây là trang quản lý danh mục sản phẩm dành cho quản trị viên.
   .card.mb-3
     .card-header Danh Sách Danh Mục Sản Phẩm
-      .card-body
-        .row 
-          .col-8
-          .col-4 
-            a(
-              href=`${prefixAdmin}/products-category/create`
-              class="btn btn-outline-success"
-            ) + Thêm mới 
+    .card-body
+      .row 
+        .col-8
+        .col-4.text-right
+          a(
+            href=`${prefixAdmin}/products-category/create`
+            class="btn btn-outline-success"
+          ) + Thêm mới 
 
 
       table(

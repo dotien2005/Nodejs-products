@@ -1,0 +1,28 @@
+extends ../../layouts/default.pug
+block main
+  h1(class="mb-4") Tạo Nhóm Quyền Mới
+  form(
+    action=`${prefixAdmin}/roles/create`
+    method="POST"
+    ) 
+      div(class="form-group")
+        label(for="title") Tên Nhóm Quyền
+        input(
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          required
+        )
+      div(class="form-group mt-3")
+        label(for="desc") Mô Tả Nhóm Quyền 
+        input(
+          type="text"
+          class="form-control"
+          id="desc"
+          name="description"
+        )
+      div(class="form-group mt-4")
+        button(type="submit" class="btn btn-primary") Tạo Nhóm Quyền
+
+

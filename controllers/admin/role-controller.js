@@ -64,3 +64,8 @@ module.exports.editPatch = async (req, res) => {
     res.redirect(`${systemConfig.prefixAdmin}/roles/edit/${id}`);
   }
 };
+
+// [PATCH] /admin/roles/permissions  : phân quyền
+module.exports.permissions = async (req, res) => {
+  res.send("Permissions Page");
+};

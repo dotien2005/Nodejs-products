@@ -67,5 +67,12 @@ module.exports.editPatch = async (req, res) => {
 
 // [PATCH] /admin/roles/permissions  : phân quyền
 module.exports.permissions = async (req, res) => {
-  res.send("Permissions Page");
+  let find = {
+    deleted: false,
+  };
+  const records = await Role.find(find);
+  res.render("admin/pages/roles/permissions.pug", {
+    pageTitle: "Phân quyền nhóm",
+    records: records,
+  });
 };

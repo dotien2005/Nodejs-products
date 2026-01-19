@@ -1,0 +1,59 @@
+extends ../../layouts/default.pug
+
+block main
+  h1(class="mb-4") Quản lý Quyền cho Nhóm Quyền
+  p Chọn các quyền bạn muốn gán cho nhóm quyền này.
+  div #{records}
+  div(class="text-right")
+    button(
+      type="submit"
+      class="btn btn-primary mb-3"
+      button-submit
+    ) Cập nhật
+
+
+  table(
+    class="table table-hover table-sm"
+    table-permissions
+  )
+    thead 
+      tr
+        th Tính năng
+        each item in records
+          th(class="text-center") #{item.title}
+
+
+    tbody 
+      tr(data-name="id")
+        td 
+        each item in records
+          td(class="text-center")
+            input(type="text" value=item.id)
+      tr 
+        td(colspan="4")
+          b Danh mục sản phẩm
+        tr(data-name="product-category_view")
+          td xem 
+          each item in records
+            td(class="text-center")
+              input(type="checkbox")
+
+        tr(data-name="product-category_create")
+          td Thêm mới 
+          each item in records
+            td(class="text-center")
+              input(type="checkbox")
+
+        tr(data-name="product-category_edit")
+          td Chỉnh sửa
+          each item in records
+            td(class="text-center")
+              input(type="checkbox") 
+
+
+        tr(data-name="product-category_delete")
+          td Xoá 
+            each item in records
+              td(class="text-center")
+                input(type="checkbox")
+  script(src="/admin/js/roles.js")

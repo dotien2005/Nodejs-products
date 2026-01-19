@@ -56,4 +56,18 @@ block main
             each item in records
               td(class="text-center")
                 input(type="checkbox")
+
+  form(
+    id="form-change-permissions"
+    method="POST"
+    action=`${prefixAdmin}/roles/permissions?_method=PATCH`
+  )
+    div(class="form-group")
+      input(
+        type="text"
+        class="form-control"
+        name="permissions"
+      )
+
+
   script(src="/admin/js/roles.js")

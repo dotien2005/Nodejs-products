@@ -1,9 +1,11 @@
 extends ../../layouts/default.pug
+include ../../mixins/alert.pug
 
 block main
   h1(class="mb-4") Quản lý Quyền cho Nhóm Quyền
   p Chọn các quyền bạn muốn gán cho nhóm quyền này.
-  div #{records}
+  +alert-success(5000)
+  //- div #{records}
   div(class="text-right")
     button(
       type="submit"
@@ -24,7 +26,7 @@ block main
 
 
     tbody 
-      tr(data-name="id")
+      tr(data-name="id" class="d-none")
         td 
         each item in records
           td(class="text-center")
@@ -61,6 +63,7 @@ block main
     id="form-change-permissions"
     method="POST"
     action=`${prefixAdmin}/roles/permissions?_method=PATCH`
+    class="d-none"
   )
     div(class="form-group")
       input(

@@ -65,7 +65,7 @@ module.exports.editPatch = async (req, res) => {
   }
 };
 
-// [PATCH] /admin/roles/permissions  : phân quyền
+// [GET] /admin/roles/permissions  : phân quyền
 module.exports.permissions = async (req, res) => {
   let find = {
     deleted: false,
@@ -75,4 +75,16 @@ module.exports.permissions = async (req, res) => {
     pageTitle: "Phân quyền nhóm",
     records: records,
   });
+};
+
+// [PATCH] /admin/roles/permissions  : phân quyền
+module.exports.permissionsPatch = async (req, res) => {
+  // console.log(req.body.permissions);
+  const permissions = JSON.parse(req.body.permissions);
+
+  for (const item of permissions) {
+    await Role.updateOne({ _id: item.id }, { permissions: item.permissions });
+  }
+  req.flash("success", "Cập nhật phân quyền thành công");
+  res.redirect(`${systemConfig.prefixAdmin}/roles/permissions`);
 };

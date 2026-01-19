@@ -4,8 +4,11 @@ include ../../mixins/alert.pug
 block main
   h1(class="mb-4") Quản lý Quyền cho Nhóm Quyền
   p Chọn các quyền bạn muốn gán cho nhóm quyền này.
-  +alert-success(5000)
+  //- +alert-success(5000)
   //- div #{records}
+  if(records)
+    div(data-records=records)
+
   div(class="text-right")
     button(
       type="submit"

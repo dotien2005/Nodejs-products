@@ -53,3 +53,28 @@ if (tablePermissions) {
   });
 }
 //   enMDA Permissions
+
+// Permissions data table
+const dataRecords = document.querySelector("[data-records]");
+if (dataRecords) {
+  const records = JSON.parse(dataRecords.getAttribute("data-records"));
+  console.log(records);
+
+  const tablePermissions = document.querySelector("table[table-permissions]");
+
+  records.forEach((records, index) => {
+    const permissions = records.permissions;
+
+    permissions.forEach((permission) => {
+      const row = tablePermissions.querySelector(`[data-name="${permission}"]`);
+      const inputs = row.querySelectorAll("input")[index];
+
+      inputs.checked = true;
+      // console.log(permission);
+      // console.log(index);
+    });
+    // console.log("-------------");
+  });
+}
+
+// End Permissions data table

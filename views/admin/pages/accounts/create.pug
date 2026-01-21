@@ -67,7 +67,12 @@ block main
       )
 
 
-
+    div(class="form-group")
+      label(for="role_id") Phân quyền
+      select(name="role_id" id="role_id" class="form-control")
+        option(disabled) -- Chọn --
+        option(value="") Quản trị viên
+        option(value="") Quản trị nội dung
 
     div(class="form-group form-check form-check-inline")
       input(
@@ -90,5 +95,8 @@ block main
         checked
       )
       lable(for="statusActive" class="form-check-lable") Dừng Hoạt động
+
+    div(class="form-group mt-4")
+      button(type="submit" class="btn btn-primary") Tạo mới
 
 

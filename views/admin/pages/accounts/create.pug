@@ -1,7 +1,10 @@
 extends ../../layouts/default.pug
+include ../../mixins/alert.pug
 
 block main
   h1(class="mb-4") Thêm mới tài khoản
+  +alert-error(5000)
+  +alert-success(5000)
 
   form(
     action=`${prefixAdmin}/accounts/create`
@@ -71,8 +74,9 @@ block main
       label(for="role_id") Phân quyền
       select(name="role_id" id="role_id" class="form-control")
         option(disabled) -- Chọn --
-        option(value="") Quản trị viên
-        option(value="") Quản trị nội dung
+        each item in recordsRole
+          option(value=item.id) #{item.title}
+
 
     div(class="form-group form-check form-check-inline")
       input(

@@ -1,0 +1,23 @@
+extends ../../layouts/default.pug
+
+block main 
+  h1(class="mb-4") Trang Tài Khoản
+  .card.mb-3
+    .card-header Danh Sách
+    .card-body
+      .row 
+        .col-8
+        .col-4.text-right
+          a(
+            href=`${prefixAdmin}/accounts/create`
+            class="btn btn-outline-success"
+          ) + Thêm mới
+
+  table.table.table-bordered
+    thead
+      tr
+        th ID
+        th Họ và tên
+        th Email
+        th Số điện thoại
+        th Nhóm quyền

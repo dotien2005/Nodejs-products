@@ -59,3 +59,24 @@ module.exports.createPost = async (req, res) => {
     res.redirect(`${systemConfig.prefixAdmin}/accounts/create`);
   }
 };
+
+module.exports.edit = async (req, res) => {
+  let find = {
+    _id: req.params.id,
+    deleted: false,
+  };
+  try {
+    const data = await Account.findOne(find);
+    const roles = await Role.findOne({
+      deleted: false,
+    });
+
+    res.render("admin/pages/accounts/edit.pug", {
+      pageTitle: "Edit Account",
+      data: data,
+      roles: roles,
+    });
+  } catch (error) {
+    res.redirect(`${systemConfig.prefixAdmin}/accounts`);
+  }
+};

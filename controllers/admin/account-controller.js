@@ -8,11 +8,21 @@ module.exports.index = async (req, res) => {
   let find = {
     deleted: false,
   };
-  const accounts = await Account.find(find).select("-password -token");
-  console.log(accounts);
+
+  const records = await Account.find(find).select("-password -token");
+  console.log(records);
+  // hiển thị role
+
+  for (const record of records) {
+    const role = await Role.findOne({
+      _id: record.role_id,
+      deleted: false,
+    });
+    record.role = role;
+  }
   res.render("admin/pages/accounts/index.pug", {
     pageTitle: "Accounts Page",
-    recordAccounts: accounts,
+    accounts: records,
   });
 };
 

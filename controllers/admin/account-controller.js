@@ -67,14 +67,14 @@ module.exports.edit = async (req, res) => {
   };
   try {
     const data = await Account.findOne(find);
-    const roles = await Role.findOne({
+    const records = await Role.findOne({
       deleted: false,
     });
 
     res.render("admin/pages/accounts/edit.pug", {
       pageTitle: "Edit Account",
       data: data,
-      roles: roles,
+      role: records,
     });
   } catch (error) {
     res.redirect(`${systemConfig.prefixAdmin}/accounts`);
